@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_stayhome/SizeConfig.dart';
@@ -54,15 +55,14 @@ class _SplashScreenState extends State<SplashScreen> {
             )
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.1,
-              child: Center(
-                child: Padding(
-                  padding:  EdgeInsets.symmetric(
-                    horizontal: 5 * SizeConfig.widthMultiplier
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.only(left:20.0),
+                child: Container(
                   child: Row(
                     children: [
                       Padding(
@@ -71,26 +71,33 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                       SizedBox(width: 5 * SizeConfig.widthMultiplier,),
                       Text("Home", style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 1 * SizeConfig.textMultiplier
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 1 * SizeConfig.textMultiplier
                       ),),
                       SizedBox(width: 5 * SizeConfig.widthMultiplier,),
                       Text("Information", style: TextStyle(
-                          color: Colors.white70,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                           fontSize: 1 * SizeConfig.textMultiplier
                       ),),
                       SizedBox(width: 5 * SizeConfig.widthMultiplier,),
                       Text("Download App", style: TextStyle(
-                          color: Colors.white70,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                           fontSize: 1 * SizeConfig.textMultiplier
                       ),),
                       SizedBox(width: 5 * SizeConfig.widthMultiplier,),
                       Text("About Us", style: TextStyle(
-                          color: Colors.white70,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                           fontSize: 1 * SizeConfig.textMultiplier
                       ),),
                       Spacer(),
-                      Icon(Icons.search, size: 3 * SizeConfig.imageSizeMultiplier, color: Colors.white,)
+                      Padding(
+                        padding: const EdgeInsets.only(right:20.0),
+                        child: Icon(Icons.search, size: 3 * SizeConfig.imageSizeMultiplier, color: Colors.white,),
+                      )
                     ],
                   ),
                 ),
@@ -101,203 +108,196 @@ class _SplashScreenState extends State<SplashScreen> {
               height: MediaQuery.of(context).size.height * 0.9,
               child: Row(
                 children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.48,
-                    child: Padding(
-                      padding:  EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.05,
-                        vertical: MediaQuery.of(context).size.height * 0.05,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Save the world by \nstaying at home", style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 60.0,
-                            fontWeight: FontWeight.w900
-                          ),),
-                          SizedBox(height: 20.0,),
-                          Text("This site is a source of information on pro-data \nvoluntary citizens", style: TextStyle(
-                              color: Colors.white54,
-                              fontSize: 16.0,
-                          ),),
-                          SizedBox(height: 50.0,),
-                          Text("Current number of cases", style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),),
-                          SizedBox(height: 20.0,),
-                          Text("Last update : 10 May 2020 | 19:10:56 + 07:00", style: TextStyle(
-                            color: Colors.white54,
-                            fontSize: 14.0,
-                          ),),
-                          SizedBox(height: 50.0,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Flexible(
+                    flex: 1,
+                    fit: FlexFit.tight,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.48,
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05,
+                          vertical: MediaQuery.of(context).size.height * 0.05,
+                        ),
+                        child: Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: 120.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0xff6f48b0),
-                                  borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                child: Padding(
-                                  padding:  EdgeInsets.symmetric(
-                                    horizontal: 20.0,
-                                    vertical: 20.0
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor: Colors.lightBlueAccent.withOpacity(0.5),
-                                        child: Icon(Icons.done, color: Colors.white, size: 20.0,),
+                              Text("Save the world by \nstaying at home", style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 60.0,
+                                fontWeight: FontWeight.w900
+                              ),),
+                              SizedBox(height: 20.0,),
+                              Text("This site is a source of information on pro-data \nvoluntary citizens", style: TextStyle(
+                                  color: Colors.white54,
+                                  fontSize: 16.0,
+                              ),),
+                              SizedBox(height: 50.0,),
+                              Text("Current number of cases", style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),),
+                              SizedBox(height: 20.0,),
+                              Text("Last update : 10 May 2020 | 19:10:56 + 07:00", style: TextStyle(
+                                color: Colors.white54,
+                                fontSize: 14.0,
+                              ),),
+                              SizedBox(height: 50.0,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: 120.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff6f48b0),
+                                      borderRadius: BorderRadius.circular(10.0)
+                                    ),
+                                    child: Padding(
+                                      padding:  EdgeInsets.symmetric(
+                                        horizontal: 20.0,
+                                        vertical: 20.0
                                       ),
-                                      SizedBox(height: 10.0,),
-                                      Text("1414", style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0,
-                                      ),),
-                                      SizedBox(height: 5.0,),
-                                      Text("Confirmed", style: TextStyle(
-                                        color: Colors.white54,
-                                        fontSize: 14.0,
-                                      ),),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 120.0,
-                                decoration: BoxDecoration(
-                                    color: Color(0xff6f48b0),
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                child: Padding(
-                                  padding:  EdgeInsets.symmetric(
-                                      horizontal: 20.0,
-                                      vertical: 20.0
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor: Colors.greenAccent.withOpacity(0.5),
-                                        child: Icon(Icons.add, color: Colors.white, size: 20.0,),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: Colors.lightBlueAccent.withOpacity(0.5),
+                                            child: Icon(Icons.done, color: Colors.white, size: 20.0,),
+                                          ),
+                                          SizedBox(height: 10.0,),
+                                          Text("1414", style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20.0,
+                                          ),),
+                                          SizedBox(height: 5.0,),
+                                          Text("Confirmed", style: TextStyle(
+                                            color: Colors.white54,
+                                            fontSize: 14.0,
+                                          ),),
+                                        ],
                                       ),
-                                      SizedBox(height: 10.0,),
-                                      Text("1217", style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0,
-                                      ),),
-                                      SizedBox(height: 5.0,),
-                                      Text("Hospitalized", style: TextStyle(
-                                        color: Colors.white54,
-                                        fontSize: 14.0,
-                                      ),),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Container(
-                                width: 120.0,
-                                decoration: BoxDecoration(
-                                    color: Color(0xff6f48b0),
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                child: Padding(
-                                  padding:  EdgeInsets.symmetric(
-                                      horizontal: 20.0,
-                                      vertical: 20.0
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor: Colors.yellowAccent.withOpacity(0.5),
-                                        child: Icon(Icons.favorite_border, color: Colors.white, size: 20.0,),
+                                  Container(
+                                    width: 120.0,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff6f48b0),
+                                        borderRadius: BorderRadius.circular(10.0)
+                                    ),
+                                    child: Padding(
+                                      padding:  EdgeInsets.symmetric(
+                                          horizontal: 20.0,
+                                          vertical: 20.0
                                       ),
-                                      SizedBox(height: 10.0,),
-                                      Text("75", style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0,
-                                      ),),
-                                      SizedBox(height: 5.0,),
-                                      Text("Recovered", style: TextStyle(
-                                        color: Colors.white54,
-                                        fontSize: 14.0,
-                                      ),),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 120.0,
-                                decoration: BoxDecoration(
-                                    color: Color(0xff6f48b0),
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                child: Padding(
-                                  padding:  EdgeInsets.symmetric(
-                                      horizontal: 20.0,
-                                      vertical: 20.0
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor: Colors.purpleAccent.withOpacity(0.5),
-                                        child: Icon(Icons.remove, color: Colors.white, size: 20.0,),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: Colors.greenAccent.withOpacity(0.5),
+                                            child: Icon(Icons.add, color: Colors.white, size: 20.0,),
+                                          ),
+                                          SizedBox(height: 10.0,),
+                                          Text("1217", style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20.0,
+                                          ),),
+                                          SizedBox(height: 5.0,),
+                                          Text("Hospitalized", style: TextStyle(
+                                            color: Colors.white54,
+                                            fontSize: 14.0,
+                                          ),),
+                                        ],
                                       ),
-                                      SizedBox(height: 10.0,),
-                                      Text("122", style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0,
-                                      ),),
-                                      SizedBox(height: 5.0,),
-                                      Text("Died", style: TextStyle(
-                                        color: Colors.white54,
-                                        fontSize: 14.0,
-                                      ),),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
+                                  Container(
+                                    width: 120.0,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff6f48b0),
+                                        borderRadius: BorderRadius.circular(10.0)
+                                    ),
+                                    child: Padding(
+                                      padding:  EdgeInsets.symmetric(
+                                          horizontal: 20.0,
+                                          vertical: 20.0
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: Colors.yellowAccent.withOpacity(0.5),
+                                            child: Icon(Icons.favorite_border, color: Colors.white, size: 20.0,),
+                                          ),
+                                          SizedBox(height: 10.0,),
+                                          Text("75", style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20.0,
+                                          ),),
+                                          SizedBox(height: 5.0,),
+                                          Text("Recovered", style: TextStyle(
+                                            color: Colors.white54,
+                                            fontSize: 14.0,
+                                          ),),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 120.0,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff6f48b0),
+                                        borderRadius: BorderRadius.circular(10.0)
+                                    ),
+                                    child: Padding(
+                                      padding:  EdgeInsets.symmetric(
+                                          horizontal: 20.0,
+                                          vertical: 20.0
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: Colors.purpleAccent.withOpacity(0.5),
+                                            child: Icon(Icons.remove, color: Colors.white, size: 20.0,),
+                                          ),
+                                          SizedBox(height: 10.0,),
+                                          Text("122", style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20.0,
+                                          ),),
+                                          SizedBox(height: 5.0,),
+                                          Text("Died", style: TextStyle(
+                                            color: Colors.white54,
+                                            fontSize: 14.0,
+                                          ),),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
 
+                                ],
+                              ),
                             ],
                           ),
-                          SizedBox(height: 50.0,),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(35.0),
-                            ),
-                            child: Padding(
-                              padding:  EdgeInsets.symmetric(
-                                horizontal: 40.0,
-                                vertical: 20.0
-                              ),
-                              child: Text("More Info", style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18.0
-                              ),),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                  Spacer(),
-                  Align(
-                      alignment: Alignment.bottomRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 10.0,
-                          left: 10.0
-                        ),
-                        child: Image.asset("image.png"),
-                      )),
+                  Flexible(
+                    flex: 1,
+                    fit: FlexFit.tight,
+                    child: Container(
+                      child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 10.0,
+                              left: 10.0
+                            ),
+                            child: Image.asset("image.png"),
+                          )),
+                    ),
+                  ),
                 ],
               ),
             ),
