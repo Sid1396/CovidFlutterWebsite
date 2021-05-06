@@ -1,6 +1,14 @@
+import 'dart:convert';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stayhome/ApiClient.dart';
 import 'package:flutter_stayhome/SizeConfig.dart';
+import 'package:flutter_stayhome/models/AllDataResponse.dart';
+import 'package:http/http.dart' as http;
+
+import 'Constants.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,6 +41,20 @@ class StayHome extends StatefulWidget {
 class _StayHomeState extends State<StayHome> {
 
   List <Color> _colors = [Color(0xff6034a7), Color(0xff6b2d93)];
+
+  String confirmedCount ="0";
+  String activeCount ="0";
+  String recoveredCount ="0";
+  String deathCount ="0";
+
+  @override
+  void initState() {
+    super.initState();
+    getAllData();
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +173,7 @@ class _StayHomeState extends State<StayHome> {
                                         child: Icon(Icons.done, color: Colors.white, size: 20.0,),
                                       ),
                                       SizedBox(height: 10.0,),
-                                      Text("1414", style: TextStyle(
+                                      Text(confirmedCount, style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20.0
                                       ),),
@@ -182,12 +204,12 @@ class _StayHomeState extends State<StayHome> {
                                         child: Icon(Icons.add, color: Colors.white, size: 20.0,),
                                       ),
                                       SizedBox(height: 10.0,),
-                                      Text("1217", style: TextStyle(
+                                      Text("121237", style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20.0
                                       ),),
                                       SizedBox(height: 5.0,),
-                                      Text("Hospitalized", style: TextStyle(
+                                      Text("Active", style: TextStyle(
                                           color: Colors.white54,
                                           fontSize: 14.0
                                       ),)
@@ -213,7 +235,7 @@ class _StayHomeState extends State<StayHome> {
                                         child: Icon(Icons.favorite_border, color: Colors.white, size: 20.0,),
                                       ),
                                       SizedBox(height: 10.0,),
-                                      Text("75", style: TextStyle(
+                                      Text(recoveredCount, style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20.0
                                       ),),
@@ -244,7 +266,7 @@ class _StayHomeState extends State<StayHome> {
                                         child: Icon(Icons.remove, color: Colors.white, size: 20.0,),
                                       ),
                                       SizedBox(height: 10.0,),
-                                      Text("122", style: TextStyle(
+                                      Text(deathCount, style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20.0
                                       ),),
@@ -301,6 +323,35 @@ class _StayHomeState extends State<StayHome> {
 
     );
   }
+
+  void getAllData() async{
+    loading(context, 'Loading Data');
+    var responseResult = AllDataResponse();
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      http.Response response =
+          await ApiClient().getAllData();
+      var jsonString = response.body;
+      var jsonMap = json.decode(jsonString);
+      responseResult = AllDataResponse.fromJson(jsonMap);
+      if (response.statusCode == 200) {
+        dismissDialog();
+        confirmedCount = responseResult.casesTimeSeries.last.totalconfirmed;
+        recoveredCount = responseResult.casesTimeSeries.last.totalrecovered;
+        deathCount = responseResult.casesTimeSeries.last.totaldeceased;
+        activeCount = responseResult.casesTimeSeries.last.totalconfirmed;
+        setState(() {
+
+        });
+      } else {
+        dismissDialog();
+      }
+    } else
+      noInternet();
+  }
+
+
 }
 
 //https://image.flaticon.com/icons/svg/2659/2659980.svg
